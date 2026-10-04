@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Teacher's Day - Prof. Nadeem Khan Sahab</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #070f26;
+      --card-bg: rgba(16, 26, 58, 0.9);
+      --accent-color: #00d2ff;
+      --accent-glow: #80e5ff;
+      --text-color: #e6f7ff;
+      --gold: #f1c40f;
+      --electron-color: #00f0ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating Background SVG - 9th & 10th Physics Topics */
+    .bg-svg-pattern {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .floating-icon {
+      animation: floatBg 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBg {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-12px) rotate(6deg); }
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+      background: var(--card-bg);
+      border: 2px solid var(--accent-color);
+      border-radius: 24px;
+      padding: 25px 20px;
+      box-shadow: 0 10px 30px rgba(0, 210, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.15);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #0072ff, #00d2ff);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+    }
+
+    .teacher-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 5px;
+      text-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .subject-title {
+      font-size: 0.95rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .icon-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      background: rgba(0, 210, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--accent-color);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    }
+
+    .main-svg {
+      width: 90px;
+      height: 90px;
+    }
+
+    /* REALISTIC ATOM BEHAVIOUR ANIMATIONS */
+    /* 1. Nucleus Pulsing */
+    .atom-nucleus {
+      animation: nucleusPulse 2s ease-in-out infinite alternate;
+      transform-origin: 50px 50px;
+    }
+
+    @keyframes nucleusPulse {
+      0% { transform: scale(0.92); filter: drop-shadow(0 0 4px #ff0055); }
+      100% { transform: scale(1.08); filter: drop-shadow(0 0 10px #f1c40f); }
+    }
+
+    /* 2. Realistic Orbital Rotation with Inclination */
+    .orbit-1 {
+      animation: orbitRotate1 2.2s linear infinite;
+      transform-origin: 50px 50px;
+    }
+
+    .orbit-2 {
+      animation: orbitRotate2 3.0s linear infinite;
+      transform-origin: 50px 50px;
+    }
+
+    .orbit-3 {
+      animation: orbitRotate3 3.8s linear infinite;
+      transform-origin: 50px 50px;
+    }
+
+    @keyframes orbitRotate1 {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes orbitRotate2 {
+      0% { transform: rotate(60deg); }
+      100% { transform: rotate(420deg); }
+    }
+
+    @keyframes orbitRotate3 {
+      0% { transform: rotate(-60deg); }
+      100% { transform: rotate(300deg); }
+    }
+
+    .message {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d4f3ff;
+      margin-bottom: 25px;
+      padding: 0 10px;
+    }
+
+    .signature-box {
+      border-top: 1px dashed rgba(0, 210, 255, 0.4);
+      padding-top: 15px;
+      margin-bottom: 20px;
+    }
+
+    .from-text {
+      font-size: 0.8rem;
+      color: #99e6ff;
+    }
+
+    .student-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--gold);
+      margin-top: 2px;
+      letter-spacing: 1px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #00d2ff, #0072ff);
+      color: #070f26;
+      font-weight: bold;
+      font-size: 0.95rem;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Pattern: 9th & 10th Physics Topics -->
+  <svg class="bg-svg-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <pattern id="physics-9th10th" x="0" y="0" width="140" height="140" patternUnits="userSpaceOnUse">
+      <!-- 1. Magnet N-S Pole (10th Ch 15 Magnetism) -->
+      <g class="floating-icon" style="animation-delay: 0s;">
+        <rect x="15" y="15" width="30" height="12" rx="3" stroke="#00d2ff" stroke-width="1.2" fill="none"/>
+        <line x1="30" y1="15" x2="30" y2="27" stroke="#00d2ff" stroke-width="1.2"/>
+        <text x="19" y="24" fill="#00f0ff" font-size="8" font-weight="bold">N</text>
+        <text x="33" y="24" fill="#ff4d6d" font-size="8" font-weight="bold">S</text>
+      </g>
+      <!-- 2. Electric Circuit Bulb (10th Ch 14 Current Electricity) -->
+      <g class="floating-icon" style="animation-delay: 1.5s;">
+        <circle cx="95" cy="22" r="8" stroke="#00d2ff" stroke-width="1.2" fill="none"/>
+        <path d="M 91 22 L 95 18 L 99 22" stroke="#f1c40f" stroke-width="1" fill="none"/>
+        <line x1="95" y1="30" x2="95" y2="35" stroke="#00d2ff" stroke-width="1.2"/>
+      </g>
+      <!-- 3. Formula Speed of Light / Energy E=mc² (9th Ch 1 / 10th Atomic Physics) -->
+      <g class="floating-icon" style="animation-delay: 3s;">
+        <text x="15" y="90" fill="#f1c40f" font-size="11" font-weight="bold">E = mc²</text>
+      </g>
+      <!-- 4. Convex Lens & Ray Optics (10th Ch 12 Geometrical Optics) -->
+      <g class="floating-icon" style="animation-delay: 4.5s;">
+        <path d="M 85 75 Q 95 85 85 95 Q 105 85 85 75 Z" stroke="#00d2ff" stroke-width="1.2" fill="none"/>
+        <line x1="75" y1="85" x2="110" y2="85" stroke="#80e5ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+      </g>
+      <!-- 5. Pendulum Simple Harmonic Motion (10th Ch 10 SHM) -->
+      <g class="floating-icon" style="animation-delay: 2s;">
+        <line x1="65" y1="110" x2="55" y2="125" stroke="#00d2ff" stroke-width="1.2"/>
+        <circle cx="55" cy="125" r="4" fill="#00f0ff"/>
+      </g>
+    </pattern>
+    <rect width="100%" height="100%" fill="url(#physics-9th10th)" />
+  </svg>
+
+  <div class="card">
+    <div class="badge">​A True Beacon of Knowledge</div>
+    <h1 class="teacher-name">Prof. Nadeem Khan Sahab</h1>
+    <p class="subject-title">Happy Teacher's Day</p>
+
+    <div class="icon-container">
+      <!-- Realistic Atomic Physics Orbital SVG -->
+      <svg class="main-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        
+        <!-- Center Nucleus (Protons + Neutrons Cluster) -->
+        <g class="atom-nucleus">
+          <circle cx="50" cy="50" r="8" fill="url(#nucleusGradient)"/>
+          <circle cx="48" cy="48" r="3" fill="#f1c40f"/>
+          <circle cx="52" cy="51" r="3" fill="#ff0055"/>
+          <circle cx="49" cy="52" r="2.5" fill="#00f0ff"/>
+        </g>
+
+        <!-- Orbit 1 (Horizontal Inclined) -->
+        <g class="orbit-1">
+          <ellipse cx="50" cy="50" rx="38" ry="13" stroke="#00d2ff" stroke-width="1.5" fill="none" opacity="0.85"/>
+          <!-- Revolving Electron 1 -->
+          <circle cx="88" cy="50" r="3.5" fill="#00f0ff" filter="drop-shadow(0 0 5px #00f0ff)"/>
+        </g>
+
+        <!-- Orbit 2 (+60deg Inclined) -->
+        <g class="orbit-2">
+          <ellipse cx="50" cy="50" rx="38" ry="13" stroke="#80e5ff" stroke-width="1.5" fill="none" opacity="0.85"/>
+          <!-- Revolving Electron 2 -->
+          <circle cx="88" cy="50" r="3.5" fill="#f1c40f" filter="drop-shadow(0 0 5px #f1c40f)"/>
+        </g>
+
+        <!-- Orbit 3 (-60deg Inclined) -->
+        <g class="orbit-3">
+          <ellipse cx="50" cy="50" rx="38" ry="13" stroke="#00f0ff" stroke-width="1.5" fill="none" opacity="0.85"/>
+          <!-- Revolving Electron 3 -->
+          <circle cx="88" cy="50" r="3.5" fill="#ff0055" filter="drop-shadow(0 0 5px #ff0055)"/>
+        </g>
+
+        <!-- Gradient Definition for Nucleus Glow -->
+        <defs>
+          <radialGradient id="nucleusGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(50 50) scale(10)">
+            <stop stop-color="#ff0055"/>
+            <stop offset="0.7" stop-color="#f1c40f"/>
+            <stop offset="1" stop-color="#00d2ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+      </svg>
+    </div>
+
+    <p class="message">
+      Sir, from Simple Harmonic Motion to Atomic Physics, your practical examples make every complex concept crystal clear. Thank you for being an amazing mentor!
+    </p>
+
+    <div class="signature-box">
+      <p class="from-text">Crafted with respect & gratitude by</p>
+      <div class="student-name">M. Ayan Ali</div>
+    </div>
+
+    <button class="btn" onclick="celebrate()">Celebrate Sir! ⚛️</button>
+  </div>
+
+  <script>
+    function playPhysicsSound() {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const frequencies = [220, 330, 440, 554.37, 659.25];
+      frequencies.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.09);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime + index * 0.09);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + index * 0.09 + 0.45);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(audioCtx.currentTime + index * 0.09);
+        osc.stop(audioCtx.currentTime + index * 0.09 + 0.45);
+      });
+    }
+
+    function celebrate() {
+      playPhysicsSound();
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#00d2ff', '#00f0ff', '#80e5ff', '#f1c40f', '#ff0055']
+      });
+    }
+  </script>
+</body>
+</html>
